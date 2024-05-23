@@ -8,22 +8,30 @@
     <style>
         body{
             display: flex;
-            flex-direction: column-reverse;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            margin: 0;
         }
         #list{
             list-style: none;
             padding: 0;
+            margin-top: 30px;
+        }
+        li{
+            margin-top: 3px;
+            border: 1px solid gray;
+            padding: 5px 20px;
         }
     </style>
 </head>
 <body>
-    <ul id="list"></ul>
+    </di><h1>TypeScript To-do List</h1>
     <form id="new-task-form">
         <input type="text" id="new-task-title">
         <button type="submit">Add</button>
     </form>
+    <ul id="list"></ul>
 </body>
 </html>
