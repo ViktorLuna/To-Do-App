@@ -27,26 +27,25 @@ form?.addEventListener("submit", e => {
 	}
 
 	tasks.push(newTask)
-
+	console.log(tasks)
 
 	addListItem(newTask)
 	input.value = "";
+
+	saveTasks();
 })
 
 function addListItem(task: Task){
-	console.log('ehhhh')
+	// console.log('ehhhh')
 	const item = document.createElement('li');
 	const label = document.createElement('label');
 	const checkbox = document.createElement('input');
 
 	checkbox.addEventListener("change", () => {
 		task.completed = checkbox.checked;
+		localStorage.setItem("TASKS", JSON.stringify(tasks))
 
-		if(task.completed == false){
-			removeTasks();
-		}
-		// console.log(tasks)
-		saveTasks();
+		setTimeout(function(){ window. location. reload(); removeTasks(); }, 500); //reloads the window
 	})
 	
 	checkbox.type = 'checkbox';
@@ -54,6 +53,7 @@ function addListItem(task: Task){
 	label.append(checkbox, task.title);
 	item.append(label);
 	list?.append(item);
+
 }
 
 function saveTasks() {
@@ -61,7 +61,7 @@ function saveTasks() {
 }
 
 function removeTasks() {
-	const taskIndex = tasks.findIndex(task => task.id); // Find index of task to remove
+	const taskIndex = tasks.findIndex(task => task.completed === true); // Find index of task to remove
 	
 	if (taskIndex !== -1) {
 		tasks.splice(taskIndex, 1); // Remove the task at the found index
